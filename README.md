@@ -7,7 +7,7 @@
 Адрес репозитория: https://github.com/VDSQ/react-mesto-api-full-gha
 ## Ссылки на проект
 
-IP-адрес - 158.160.60.139
+IP-адрес - IP 158.160.60.139
 
 Frontend - https://mesto-example.nomoredomains.monster/
 
