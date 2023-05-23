@@ -212,7 +212,7 @@ function App() {
       .register(email, password)
       .then((result) => {
         setIsAuthStatusSuccess(true);
-        navigate("/", { replace: true });
+        navigate("/sign-in", { replace: true });
       })
       .catch((statusCode) => {
         setIsAuthStatusSuccess(false);
@@ -242,6 +242,8 @@ function App() {
         }
       })
       .catch((statusCode) => {
+        setIsTooltipOpen(true);
+        
         if (statusCode === 400) {
           console.error("Не передано одно из полей.");
         } else if (statusCode === 401) {
@@ -251,8 +253,6 @@ function App() {
             "Ошибка при авторизации. statusCode=".concat(statusCode)
           );
         }
-
-        setIsTooltipOpen(true);
       });
   }
 
