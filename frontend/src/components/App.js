@@ -212,6 +212,7 @@ function App() {
       .register(email, password)
       .then((result) => {
         setIsAuthStatusSuccess(true);
+        navigate("/", { replace: true });
       })
       .catch((statusCode) => {
         setIsAuthStatusSuccess(false);
@@ -250,6 +251,8 @@ function App() {
             "Ошибка при авторизации. statusCode=".concat(statusCode)
           );
         }
+
+        setIsTooltipOpen(true);
       });
   }
 
