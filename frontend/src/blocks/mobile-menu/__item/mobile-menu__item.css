@@ -1,0 +1,14 @@
+.mobile-menu__item  {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  color: #FFF;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  transition: .4s;
+}
+
+.mobile-menu__item:hover {
+  opacity: .6;
+}

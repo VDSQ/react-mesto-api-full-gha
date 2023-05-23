@@ -1,0 +1,17 @@
+.auth__register {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 5px;
+  margin: 1px auto 0;
+  padding: 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+@media screen and (max-width: 767px) {
+  .auth__register {
+    margin: 6px auto 0;
+  }
+}

@@ -1,0 +1,9 @@
+.header__menu-item_email:hover {
+  opacity: 1;
+}
+
+@media screen and (max-width: 767px) {
+  .header__menu-item_email {
+    display: none;
+  }
+}

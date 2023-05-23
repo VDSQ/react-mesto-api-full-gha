@@ -1,0 +1,9 @@
+.header__link {
+  display: flex;
+  align-self: baseline;
+  transition: .4s;
+}
+
+.header__link:hover {
+  opacity: .6;
+}

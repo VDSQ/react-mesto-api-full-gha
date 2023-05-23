@@ -1,0 +1,15 @@
+.card__button-remove_visible {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 18px;
+  height: 19px;
+  padding: 0;
+  border: 0;
+  background-image: url(../../../../images/bin.svg);
+  transition: .4s;
+}
+
+.card__button-remove_visible:hover {
+  opacity: .6;
+}

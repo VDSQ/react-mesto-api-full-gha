@@ -1,0 +1,21 @@
+.header__menu-item {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  color: #FFF;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  transition: .4s;
+}
+
+.header__menu-item:hover {
+  opacity: .6;
+}
+
+@media screen and (max-width: 767px) {
+  .header__menu-item {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
