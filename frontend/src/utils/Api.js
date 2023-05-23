@@ -1,8 +1,7 @@
-import { apiConfig } from "./utils";
-
 class Api {
-  constructor(config) {
-    this._config = config;
+  constructor(baseUrl, headers) {
+    this._baseUrl = baseUrl;
+    this._headers = headers;
   }
 
   _parseResult = (result) => {
@@ -14,17 +13,17 @@ class Api {
   };
 
   getUserInfo() {
-    return fetch(`${this._config.baseUrl}${this._config.endpoints.users}`, {
+    return fetch(`${this._baseUrl}$/users/me`, {
       method: "GET",
-      headers: this._config.headers,
+      headers: this._headers,
       credentials: "include",
     }).then((result) => this._parseResult(result));
   }
 
   setUserInfo(data) {
-    return fetch(`${this._config.baseUrl}${this._config.endpoints.users}`, {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
-      headers: this._config.headers,
+      headers: this._headers,
       credentials: "include",
       body: JSON.stringify({
         name: data.name,
@@ -34,9 +33,9 @@ class Api {
   }
 
   setUserAvatar(data) {
-    return fetch(`${this._config.baseUrl}${this._config.endpoints.avatar}`, {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
-      headers: this._config.headers,
+      headers: this._headers,
       credentials: "include",
       body: JSON.stringify({
         avatar: data.avatar,
@@ -45,17 +44,17 @@ class Api {
   }
 
   getCardList() {
-    return fetch(`${this._config.baseUrl}${this._config.endpoints.cards}`, {
+    return fetch(`${this._baseUrl}/cards`, {
       method: "GET",
-      headers: this._config.headers,
+      headers: this._headers,
       credentials: "include",
     }).then((result) => this._parseResult(result));
   }
 
   setCard(data) {
-    return fetch(`${this._config.baseUrl}${this._config.endpoints.cards}`, {
+    return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
-      headers: this._config.headers,
+      headers: this._headers,
       credentials: "include",
       body: JSON.stringify({
         name: data.name,
@@ -65,36 +64,27 @@ class Api {
   }
 
   deleteCard(id) {
-    return fetch(
-      `${this._config.baseUrl}${this._config.endpoints.cards}/${id}`,
-      {
-        method: "DELETE",
-        headers: this._config.headers,
-        credentials: "include",
-      }
-    ).then((result) => this._parseResult(result));
+    return fetch(`${this._baseUrl}/cards/${id}`, {
+      method: "DELETE",
+      headers: this._headers,
+      credentials: "include",
+    }).then((result) => this._parseResult(result));
   }
 
   likeCard(id) {
-    return fetch(
-      `${this._config.baseUrl}${this._config.endpoints.likes}/${id}`,
-      {
-        method: "PUT",
-        headers: this._config.headers,
-        credentials: "include",
-      }
-    ).then((result) => this._parseResult(result));
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+      method: "PUT",
+      headers: this._headers,
+      credentials: "include",
+    }).then((result) => this._parseResult(result));
   }
 
   deleteLikeCard(id) {
-    return fetch(
-      `${this._config.baseUrl}${this._config.endpoints.likes}/${id}`,
-      {
-        method: "DELETE",
-        headers: this._config.headers,
-        credentials: "include",
-      }
-    ).then((result) => this._parseResult(result));
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+      method: "DELETE",
+      headers: this._headers,
+      credentials: "include",
+    }).then((result) => this._parseResult(result));
   }
 
   changeLikeCardStatus(id, isLiked) {
@@ -102,5 +92,7 @@ class Api {
   }
 }
 
-const api = new Api(apiConfig);
+const api = new Api("https://api.mesto-example.nomoredomains.monster", {
+  "Content-Type": "application/json",
+});
 export default api;

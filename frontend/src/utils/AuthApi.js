@@ -1,8 +1,7 @@
-import { authApiConfig } from "./utils";
-
 class AuthApi {
-  constructor(config) {
-    this._config = config;
+  constructor(baseUrl, headers) {
+    this._baseUrl = baseUrl;
+    this._headers = headers;
   }
 
   _parseResult = (result) => {
@@ -14,9 +13,9 @@ class AuthApi {
   };
 
   register(email, password) {
-    return fetch(`${this._config.baseUrl}${this._config.endpoints.signUp}`, {
+    return fetch(`${this._baseUrl}/signup`, {
       method: "POST",
-      headers: this._config.headers,
+      headers: this._headers,
       body: JSON.stringify({
         email,
         password,
@@ -25,9 +24,9 @@ class AuthApi {
   }
 
   login(email, password) {
-    return fetch(`${this._config.baseUrl}${this._config.endpoints.signIn}`, {
+    return fetch(`${this._baseUrl}/signin`, {
       method: "POST",
-      headers: this._config.headers,
+      headers: this._headers,
       credentials: "include",
       body: JSON.stringify({
         email,
@@ -37,15 +36,15 @@ class AuthApi {
   }
 
   checkUserAuthToken(token) {
-    const headers = this._config.headers;
-
-    return fetch(`${this._config.baseUrl}${this._config.endpoints.usersMe}`, {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",
-      headers: headers,
+      headers: this._headers,
       credentials: "include",
     }).then((result) => this._parseResult(result));
   }
 }
 
-const authApi = new AuthApi(authApiConfig);
+const authApi = new AuthApi("https://api.mesto-example.nomoredomains.monster", {
+  "Content-Type": "application/json",
+});
 export default authApi;
