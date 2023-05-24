@@ -242,6 +242,7 @@ function App() {
         }
       })
       .catch((statusCode) => {
+        setIsAuthStatusSuccess(false);
         setIsTooltipOpen(true);
         
         if (statusCode === 400) {
